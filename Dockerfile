@@ -22,6 +22,8 @@ COPY files/init.sh /init.sh
 # Define default command.
 CMD ["/init.sh"]
 
+VOLUME ["/var/run/mysqld"]
+
 # Define working directory.
 WORKDIR /var/lib/mysql
 
