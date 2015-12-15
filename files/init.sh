@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-rm /etc/mysql/conf.d/init.cnf
+rm -f /etc/mysql/conf.d/init.cnf
 
 if [ -d "/var/lib/mysql/mysql" ]
 then
