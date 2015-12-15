@@ -14,7 +14,8 @@ RUN \
     apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-server-5.6 && \
     rm -rf /var/lib/apt/lists/* && \
-    rm -Rf /var/lib/mysql/* /etc/mysql/*
+    mv /var/lib/mysql /var/lib/mysql.init && \
+    mv /etc/mysql /etc/mysql.init
 
 COPY files/init.sh /init.sh
 
