@@ -1,6 +1,17 @@
 #!/bin/sh
 set -e
 
+rm /etc/mysql/conf.d/init.cnf
+
+if [ -d "/var/lib/mysql/mysql" ]
+then
+  mysqld
+  exit 0
+fi
+
+rm -Rf /var/lib/mysql/*
+cp -Ra /var/lib/mysql.init/* /var/lib/mysql
+
 TEMP_FILE='/tmp/mysql-first-time.sql'
 
 if [ -z "$MYSQL_ROOT_PASSWORD" ]; then
