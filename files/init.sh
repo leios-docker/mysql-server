@@ -16,6 +16,9 @@ then
   chmod 755 /etc/mysql
   cp -Ra /etc/mysql.default/* /etc/mysql/
 
+  chmod 755 /var/run/mysqld
+  chown -R mysql:mysql /var/run/mysqld
+
   TEMP_FILE='/tmp/mysql-first-time.sql'
 
   if [ -z "$MYSQL_ROOT_PASSWORD" ]; then
