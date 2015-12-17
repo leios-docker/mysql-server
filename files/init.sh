@@ -5,13 +5,16 @@ rm -f /etc/mysql/conf.d/init.cnf
 
 if [ ! -d "/var/lib/mysql/mysql" ]
 then
-
   rm -Rf /var/lib/mysql/*
 
   mkdir -p /var/lib/mysql
   chmod 755 /var/lib/mysql
+  cp -Ra /var/lib/mysql.default/* /var/lib/mysql/
+  chown -R mysql:mysql /var/lib/mysql
 
-  cp -Ra /var/lib/mysql.init/* /var/lib/mysql
+  mkdir -p /etc/mysql
+  chmod 755 /etc/mysql
+  cp -Ra /etc/mysql.default/* /etc/mysql/
 
   TEMP_FILE='/tmp/mysql-first-time.sql'
 
@@ -29,7 +32,6 @@ then
   echo '[mysqld]'                            > /etc/mysql/conf.d/init.cnf
   echo "init-file            = ${TEMP_FILE}" >> /etc/mysql/conf.d/init.cnf
 
-  chown -R mysql:mysql /var/lib/mysql
 fi
 
 mysqld
